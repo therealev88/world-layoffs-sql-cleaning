@@ -51,3 +51,8 @@ traceability, and reproducibility.
 - Removed helper columns
 - Selected only analysis-relevant fields
 - Created a clean, analysis-ready table
+
+## ✅ Final Output
+- Final table: `layoffs_clean`
+- Clean, standardized, and analysis-ready
+- Suitable for reporting, dashboards, and further analysis
