@@ -23,3 +23,31 @@ percentage laid off, date of layoff, country, and funds raised.
 - SQL (Window functions, joins, subqueries)
 - Git & GitHub
 
+
+## 🔄 Data Cleaning Pipeline
+
+The data cleaning process was implemented in structured stages to ensure data integrity,
+traceability, and reproducibility.
+
+### Stage 0 – Raw Data Preservation
+- Imported the dataset without modification
+- Created a working copy to preserve the original data
+
+### Stage 1 – Duplicate Removal
+- Identified duplicate records using `ROW_NUMBER()`
+- Removed exact duplicate rows
+
+### Stage 2 – Data Standardization
+- Trimmed whitespace from text fields
+- Normalized categorical values such as industry and country
+- Standardized date formats
+
+### Stage 3 – NULL Handling & Enrichment
+- Converted empty strings to NULL values
+- Filled missing industry values using company-level data
+- Removed records with no layoff information
+
+### Stage 4 – Final Dataset Preparation
+- Removed helper columns
+- Selected only analysis-relevant fields
+- Created a clean, analysis-ready table
