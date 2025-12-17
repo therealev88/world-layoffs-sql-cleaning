@@ -56,3 +56,8 @@ traceability, and reproducibility.
 - Final table: `layoffs_clean`
 - Clean, standardized, and analysis-ready
 - Suitable for reporting, dashboards, and further analysis
+
+## 🚀 Next Steps
+- Perform exploratory data analysis (EDA)
+- Analyze layoffs trends by year, industry, and country
+- Visualize insights using BI or Python tools
