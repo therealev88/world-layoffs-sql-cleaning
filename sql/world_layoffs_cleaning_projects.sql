@@ -12,7 +12,7 @@ SELECT *
 FROM layoffs
 ORDER BY 1;
 
--- cloned the raw dataset to preseve the original
+-- Staged the raw dataset to preseve the original
 
 CREATE TABLE layoffs_new like layoffs;
 
@@ -25,7 +25,7 @@ INSERT INTO layoffs_new
 SELECT *
 FROM layoffs;
 
--- Removing duplicates
+-- USing row_number(), we removed duplicates
 
 SELECT *
 FROM layoffs_new;
@@ -80,7 +80,7 @@ INSERT INTO layoffs_standard
 SELECT *
 FROM layoffs_dedup ;
 
--- Formating 'Company' colum
+-- Standardizing & Formating 'Company' colum
 
 SELECT DISTINCT company,
                 trim(company)
@@ -90,7 +90,7 @@ FROM layoffs_standard;
 UPDATE layoffs_standard
 SET company = trim(company) ;
 
--- Formating 'location' colum
+-- Standardizing & Formating 'location' colum
 
 SELECT DISTINCT LOCATION,
                 count(LOCATION)
@@ -107,7 +107,7 @@ UPDATE layoffs_standard
 SET LOCATION = 'Malmo'
 WHERE LOCATION like 'malm%';
 
--- Formating 'industry' colum
+-- Standardizing & Formating 'industry' colum
 
 SELECT DISTINCT industry,
                 count(industry)
@@ -126,7 +126,7 @@ UPDATE layoffs_standard
 SET industry = 'Crypto'
 WHERE industry like 'cryp%';
 
--- Formating 'Country' colum
+-- Standardizing & Formating 'Country' colum
 
 SELECT DISTINCT country,
                 count(country)
@@ -138,7 +138,7 @@ UPDATE layoffs_standard
 SET country = 'United States'
 WHERE country like 'United States%';
 
--- Formating 'Date' colum
+-- Standardizing & Formating 'Date' colum
 
 SELECT `date`
 FROM layoffs_standard ;
@@ -154,7 +154,7 @@ ALTER TABLE layoffs_standard MODIFY COLUMN `date` date ;
 SELECT *
 FROM layoffs_standard;
 
--- Null & Missing values
+-- Populating Null & Missing values
 
 CREATE TABLE `layoffs_null` (`company` text, `location` text, `industry` text, `total_laid_off` int DEFAULT NULL,
                                                                                                             `percentage_laid_off` text, `date` date DEFAULT NULL,
@@ -216,7 +216,7 @@ JOIN layoffs_null t2 ON t1.company = t2.company
 WHERE t1.industry IS NULL
   AND t2.industry IS NOT NULL;
 
-
+-- Used a self join to populate the null values for companies with the same name
 UPDATE layoffs_null t1
 JOIN layoffs_null t2 ON t1.company = t2.company
 SET t1.industry = t2.industry
@@ -281,7 +281,7 @@ SELECT company,
        funds_raised_millions
 FROM layoffs_null;
 
-
+-- Sanity Check
 SELECT COUNT(*) AS final_row_count
 FROM layoffs_clean;
 
