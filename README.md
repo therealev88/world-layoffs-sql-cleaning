@@ -57,7 +57,10 @@ traceability, and reproducibility.
 - Clean, standardized, and analysis-ready
 - Suitable for reporting, dashboards, and further analysis
 
-## 🚀 Next Steps
-- Perform exploratory data analysis (EDA)
-- Analyze layoffs trends by year, industry, and country
-- Visualize insights using BI or Python tools
+## Downstream Analysis
+The cleaned dataset generated in this repository is used for exploratory data analysis in:
+➡️ **world-layoffs-sql-eda**
+
+That project focuses on time-based trends, company-level analysis, industry and geographic patterns, and funding-stage insights using the `layoffs_clean` table.
+
+
